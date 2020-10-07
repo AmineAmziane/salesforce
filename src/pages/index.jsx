@@ -128,6 +128,8 @@ const ParallaxCache = () => {
 export default function Index() {
   return (
     <ThemeProvider theme={theme}>
+      <ParallaxProvider>
+      <ParallaxCache />
       <CssBaseline />
       <SEO title="Univertop" />
       <Header />
@@ -140,6 +142,7 @@ export default function Index() {
       <SectionG />
       <SectionH />
       <Footer />
+      </ParallaxProvider>
     </ThemeProvider>
   );
 }

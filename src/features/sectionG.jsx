@@ -6,6 +6,7 @@ import { Parallax,ParallaxProvider } from 'react-scroll-parallax';
 import ImageLoader from '../components/imageLoader';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+ 
 const useStyles = makeStyles(theme => ({
   section: {
     padding: theme.spacing(10, 0),
@@ -213,7 +214,7 @@ export default function SectionG() {
               <ParrallaxG a={-20} b={5}/>
             ):(
               between?(
-               <ParrallaxG a={-5} b={5}/>
+               <ParrallaxG a={0} b={5}/>
               ):
               (
                <ParrallaxG a={-10} b={10}/>
@@ -226,7 +227,7 @@ export default function SectionG() {
             <ParallaxGg a={30} b={-5} />
               ):(
                 between?(
-                  <ParallaxGg a={5} b={-5} />
+                  <ParallaxGg a={10} b={-5} />
                  ):
                  (
                   <ParallaxGg a={5} b={-5} />
@@ -238,7 +239,7 @@ export default function SectionG() {
           <Grid container spacing={3} className={classes.cardContainer}>
           
             {[...Array(3).keys()].map(ele => (
-              
+
               <Grid key={ele} item xs={12} md={4}>
                 <Paper className={clsx(classes.paper, classes[`card_${ele + 1}`])}>
                   <div className={classes.imageWrapper}>
@@ -252,6 +253,7 @@ export default function SectionG() {
                   </Typography>
                 </Paper>
               </Grid>
+
             ))}
             
           </Grid>

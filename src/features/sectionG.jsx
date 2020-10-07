@@ -1,12 +1,22 @@
-import React from 'react';
+import React,{useLayoutEffect} from 'react';
 import clsx from 'clsx';
 import { useStaticQuery, graphql } from 'gatsby';
 import { makeStyles, Container, Grid, Typography, Divider, Paper } from '@material-ui/core';
-import { Parallax,ParallaxProvider } from 'react-scroll-parallax';
+import {  withController,useController,Parallax,ParallaxProvider } from 'react-scroll-parallax';
 import ImageLoader from '../components/imageLoader';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
- 
+const ParallaxCache = () => {
+  const { parallaxController } = useController();
+
+  useLayoutEffect(() => {
+      const handler = () => parallaxController.update();
+      window.addEventListener('load', handler);
+      return () => window.removeEventListener('load', handler);
+  }, [parallaxController]);
+
+  return null;
+};
 const useStyles = makeStyles(theme => ({
   section: {
     padding: theme.spacing(10, 0),
@@ -205,6 +215,7 @@ export default function SectionG() {
   return (
     <>
     <ParallaxProvider>
+      <ParallaxCache />
       <section className={classes.section}>
         <Container>
           <Grid container>

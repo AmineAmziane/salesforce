@@ -98,6 +98,7 @@ export default function SectionC() {
     }
   `);
   const matches = useMediaQuery(theme => theme.breakpoints.up('md'));
+  const betweena = useMediaQuery(themea => themea.breakpoints.between('sm', 'lg'));
   const ParallaxD= ({a,b,ele}) =>{
     return (
       <Parallax className="custom-class" x={[((-1)**(ele+1))*a,-((-1)**(ele+1))*b]} tagOuter="figure">
@@ -148,9 +149,8 @@ export default function SectionC() {
               {matches?(
               <ParallaxD a={40} b={15} ele={ele}/>
               ):(
-              <ParallaxD a={10} b={2} ele={ele}/> 
+              <ParallaxD a={5} b={7} ele={ele}/> 
               )}
-              
             </Grid>
           ))}
         </Grid>

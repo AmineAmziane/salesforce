@@ -157,6 +157,7 @@ export default function SectionG() {
     }
   `);
   const matches = useMediaQuery(theme => theme.breakpoints.up('lg'));
+  const between = useMediaQuery(theme2 => theme2.breakpoints.between('sm', 'lg'));
   const ParrallaxG = ({a,b})=>{
     return (
       <Parallax className="custom-class" x={[a,b]} tagOuter="figure">
@@ -177,6 +178,29 @@ export default function SectionG() {
               </Parallax>
     )
   }
+  const ParallaxGg= ({a,b}) =>{
+    return(
+      <Parallax className="custom-class" x={[a, b]} tagOuter="figure">
+              <Grid container>
+                {[...Array(2).keys()].map(ele => (
+                  <Grid key={ele} item xs={12}>
+                   
+                    <div className={classes.textSection}>
+                      <Typography variant="h3" paragraph>
+                        {contentfulSectionG[`title_${ele + 1}`]}
+                      </Typography>
+                      <Typography variant="body2" paragraph>
+                        {contentfulSectionG[`paragraph_${ele + 1}`][`paragraph_${ele + 1}`]}
+                      </Typography>
+                      {ele === 0 && <Divider className={classes.divider} />}
+                    </div>
+                    
+                  </Grid>
+                ))}
+              </Grid>
+      </Parallax>
+    )
+  }
   return (
     <>
     <ParallaxProvider>
@@ -188,51 +212,26 @@ export default function SectionG() {
             {matches?(
               <ParrallaxG a={-20} b={5}/>
             ):(
-              <ParrallaxG a={-10} b={5}/>
+              between?(
+               <ParrallaxG a={-5} b={5}/>
+              ):
+              (
+               <ParrallaxG a={-10} b={10}/>
+              )
             )}
             </Grid>
            
             <Grid item xs={12} md={6}>
             {matches?(
-            <Parallax className="custom-class" x={[30, -5]} tagOuter="figure">
-              <Grid container>
-                {[...Array(2).keys()].map(ele => (
-                  <Grid key={ele} item xs={12}>
-                   
-                    <div className={classes.textSection}>
-                      <Typography variant="h3" paragraph>
-                        {contentfulSectionG[`title_${ele + 1}`]}
-                      </Typography>
-                      <Typography variant="body2" paragraph>
-                        {contentfulSectionG[`paragraph_${ele + 1}`][`paragraph_${ele + 1}`]}
-                      </Typography>
-                      {ele === 0 && <Divider className={classes.divider} />}
-                    </div>
-                    
-                  </Grid>
-                ))}
-              </Grid>
-              </Parallax>
+            <ParallaxGg a={30} b={-5} />
               ):(
-                <Parallax className="custom-class" x={[10, -10]} tagOuter="figure">
-              <Grid container>
-                {[...Array(2).keys()].map(ele => (
-                  <Grid key={ele} item xs={12}>
-                   
-                    <div className={classes.textSection}>
-                      <Typography variant="h3" paragraph>
-                        {contentfulSectionG[`title_${ele + 1}`]}
-                      </Typography>
-                      <Typography variant="body2" paragraph>
-                        {contentfulSectionG[`paragraph_${ele + 1}`][`paragraph_${ele + 1}`]}
-                      </Typography>
-                      {ele === 0 && <Divider className={classes.divider} />}
-                    </div>
-                    
-                  </Grid>
-                ))}
-              </Grid>
-              </Parallax>
+                between?(
+                  <ParallaxGg a={5} b={-5} />
+                 ):
+                 (
+                  <ParallaxGg a={5} b={-5} />
+                 )
+            
               )}
             </Grid>
           </Grid>
